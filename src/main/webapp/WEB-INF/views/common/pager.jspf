@@ -1,0 +1,18 @@
+<%@ page contentType="text/html;charset=UTF-8" pageEncoding="UTF-8" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<nav class="d-flex justify-content-between align-items-center mt-3" aria-label="分页">
+    <span class="small text-muted">第 ${pageBean.page} / ${pageBean.totalPages} 页，共 ${pageBean.total} 条</span>
+    <ul class="pagination mb-0">
+        <li class="page-item ${pageBean.hasPrevious ? '' : 'disabled'}">
+            <a class="page-link" href="${pageUrl}&page=${pageBean.page - 1}">上一页</a>
+        </li>
+        <c:forEach begin="1" end="${pageBean.totalPages}" var="p">
+            <li class="page-item ${p == pageBean.page ? 'active' : ''}">
+                <a class="page-link" href="${pageUrl}&page=${p}">${p}</a>
+            </li>
+        </c:forEach>
+        <li class="page-item ${pageBean.hasNext ? '' : 'disabled'}">
+            <a class="page-link" href="${pageUrl}&page=${pageBean.page + 1}">下一页</a>
+        </li>
+    </ul>
+</nav>
